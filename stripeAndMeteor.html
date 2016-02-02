@@ -1,0 +1,88 @@
+<head>
+  <title>stripeAndMeteor</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        {{> loginButtons}}
+        <div class="panel-body">
+            <form class="payment-form">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="cardNumber">CARD NUMBER</label>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                name="cardNumber"
+                                placeholder="Valid Card Number"
+                                autocomplete="cc-number"
+                                required autofocus
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-md-3">
+                        <div class="form-group">
+                            <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                name="cardExpiryMM"
+                                placeholder="MM"
+                                autocomplete="cc-exp"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-md-3">
+                        <div class="form-group">
+                            <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                name="cardExpiryYY"
+                                placeholder="YY"
+                                autocomplete="cc-exp"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="col-xs-5 col-md-5 pull-right">
+                        <div class="form-group">
+                            <label for="cardCVC">CV CODE</label>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                name="cardCVC"
+                                placeholder="CVC"
+                                autocomplete="cc-csc"
+                                required
+                            />
+                        </div>
+                    </div>
+                </div>
+                <input type="submit">
+            </form>
+        </div>
+        <div class="panel-body">
+            {{# if hasAttachedCard }}
+              {{# if loadingCardInfo }}
+                <p>Loading Card Info</p>
+              {{ else }}
+                <p>
+                  Your {{ cardInfo.brand }} card<br>
+                  <strong>Exp Date:</strong> {{cardInfo.exp_month}}/{{cardInfo.exp_year}}<br>
+                  <strong>Last 4 digits:</strong> ...{{cardInfo.last4}}
+                </p>
+              {{/ if }}
+            {{/ if }}
+        </div>
+        <button id="chargeUser">Charge Customer</button>
+      </div>
+    </div>
+  </div>
+</body>
